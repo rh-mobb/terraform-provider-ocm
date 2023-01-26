@@ -69,6 +69,11 @@ func (t *MachinePoolResourceType) GetSchema(ctx context.Context) (result tfsdk.S
 				Type:        types.Int64Type,
 				Required:    true,
 			},
+			"subnets": {
+				Description: "The subnets upon which the nodes are created",
+				Type:        types.StringType,
+				Optional:    true,
+			},
 		},
 	}
 	return
@@ -127,6 +132,7 @@ func (r *MachinePoolResource) Create(ctx context.Context,
 	builder.ID(state.Name.Value)
 	builder.InstanceType(state.MachineType.Value)
 	builder.Replicas(int(state.Replicas.Value))
+	builder.Subnets(state.Subnets.Value)
 	object, err := builder.Build()
 	if err != nil {
 		response.Diagnostics.AddError(
@@ -250,5 +256,8 @@ func (r *MachinePoolResource) populateState(object *cmv1.MachinePool, state *Mac
 	}
 	state.Replicas = types.Int64{
 		Value: int64(object.Replicas()),
+	}
+	state.Subnets = types.String{
+		Value: object.Subnets()[],
 	}
 }

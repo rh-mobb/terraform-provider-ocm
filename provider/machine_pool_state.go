@@ -26,4 +26,5 @@ type MachinePoolState struct {
 	MachineType types.String `tfsdk:"machine_type"`
 	Name        types.String `tfsdk:"name"`
 	Replicas    types.Int64  `tfsdk:"replicas"`
+	Subnets     types.String `tfsdk:"subnets"`
 }
