@@ -66,6 +66,8 @@ OpenShift managed cluster.
 - **service_cidr** (String) Block of IP addresses for services. Default value is
   `172.30.0.0/16`.
 
+- **tags** (Map of String) Apply user defined tags to all resources created by ROSA in AWS. Tags are value then string, for example `foo = "bar"`.
+
 - **version** (String) Version of _OpenShift_ used to create the cluster, for
   example `openshift-v4.9.7`. The default is to use the latest version. To get the
   available versions use the `ocm_versions` data source.

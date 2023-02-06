@@ -132,6 +132,9 @@ resource "ocm_cluster" "rosa_cluster" {
   properties = {
     rosa_creator_arn = data.aws_caller_identity.current.arn
   }
+  tags = {
+    foo = "bar"
+  }
   wait = false
   sts = local.sts_roles
 }
